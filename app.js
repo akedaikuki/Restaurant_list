@@ -17,16 +17,16 @@ app.use(express.static("public"));
 // 設定路由
 app.get('/', (req, res) => {
     res.render("index", { restaurants: restaurantList.results });
-  });
+});
 
-  app.get("/restaurants/:restaurant_id", (req, res) => {
+app.get("/restaurants/:restaurant_id", (req, res) => {
     const restaurant = restaurantList.results.find(
       (e) => e.id.toString() === req.params.restaurant_id
     );
     res.render("show", { restaurant });
-  });
+});
   
-  app.get("/search", (req, res) => {
+app.get("/search", (req, res) => {
     const keyword = req.query.keyword;
     const restaurants = restaurantList.results.filter(
       (e) =>
@@ -35,9 +35,9 @@ app.get('/', (req, res) => {
     );
   
     res.render("index", { restaurants, keyword });
-  });
+});
 
 // 設定伺服器監聽
 app.listen(port, () => {
     console.log(`Express is listening on localhost:${port}`);
-  });
+});
